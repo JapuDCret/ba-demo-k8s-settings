@@ -16,7 +16,7 @@ Restart Deployment
 
 	kubectl rollout restart deployment/localization-svc
 
-# Misc Command
+# Misc Commands
 
     kubectl get services
 

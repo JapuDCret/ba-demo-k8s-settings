@@ -1,37 +1,83 @@
-apiVersion: apps/v1
-kind: Deployment
+apiVersion: v1
+kind: Pod
 metadata:
-  name: localization-svc
+  name: localization-svc-001
   labels:
     app: localization-svc
 spec:
-  replicas: 4
-  selector:
-    matchLabels:
-      app: localization-svc
-  template:
-    metadata:
-      labels:
-        app: localization-svc
-    spec:
-      containers:
-      - name: localization-svc
-        image: japu/localization-svc:latest
-        imagePullPolicy: "Always"
-        ports:
-        - containerPort: 9080
-        env:
-        - name: IS_ILL_POD
-          valueFrom:
-            fieldRef:
-              fieldPath: status.podIP
+  containers:
+  - name: localization-svc
+    image: japu/localization-svc:latest
+    imagePullPolicy: "Always"
+    ports:
+    - containerPort: 9080
+    env:
+    - name: IS_ILL_POD
+      value: "false"
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: localization-svc-002
+  labels:
+    app: localization-svc
+spec:
+  containers:
+  - name: localization-svc
+    image: japu/localization-svc:latest
+    imagePullPolicy: "Always"
+    ports:
+    - containerPort: 9080
+    env:
+    - name: IS_ILL_POD
+      value: "false"
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: localization-svc-003
+  labels:
+    app: localization-svc
+spec:
+  containers:
+  - name: localization-svc
+    image: japu/localization-svc:latest
+    imagePullPolicy: "Always"
+    ports:
+    - containerPort: 9080
+    env:
+    - name: IS_ILL_POD
+      value: "true"
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: localization-svc-004
+  labels:
+    app: localization-svc
+spec:
+  containers:
+  - name: localization-svc
+    image: japu/localization-svc:latest
+    imagePullPolicy: "Always"
+    ports:
+    - containerPort: 9080
+    env:
+    - name: IS_ILL_POD
+      value: "false"
 ---
 apiVersion: v1
 kind: Service
 metadata:
   name: localization-svc
+  annotations:
+    service.beta.kubernetes.io/do-loadbalancer-algorithm: "round_robin"
+    service.beta.kubernetes.io/do-loadbalancer-sticky-sessions-type: "none"
+    service.beta.kubernetes.io/do-loadbalancer-enable-backend-keepalive: "false"
 spec:
   type: LoadBalancer
+  allocateLoadBalancerNodePorts: false
+  sessionAffinity: "None"
   selector:
     app: localization-svc
   ports:
