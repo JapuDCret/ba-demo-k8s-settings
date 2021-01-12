@@ -31,7 +31,7 @@ Quick&Dirty Log Check
 
 ### K8S Deployment Diagram
 
-	![full-k8s-deployment.png](full-k8s-deployment.png)
+![full-k8s-deployment.png](full-k8s-deployment.png)
 
 ## localization-svc
 
