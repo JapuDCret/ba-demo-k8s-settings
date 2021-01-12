@@ -12,7 +12,7 @@ spec:
     ports:
     - containerPort: 9080
     env:
-    - name: BA_SHOPPINGCART_SERVICE_URL
+    - name: BA_CART_SERVICE_URL
       value: "http://cart-svc:9082/"
     - name: BA_ADDRESSVALIDATION_SERVICE_URL
       value: "http://address-validation-svc:9083/"

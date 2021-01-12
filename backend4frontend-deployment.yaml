@@ -14,7 +14,7 @@ spec:
     env:
     - name: BA_ORDER_SERVICE_URL
       value: "http://order-svc:9081/"
-    - name: BA_SHOPPINGCART_SERVICE_URL
+    - name: BA_CART_SERVICE_URL
       value: "http://cart-svc:9082/"
     - name: BA_TRANSLATION_SERVICE_URL
       value: "http://localization-svc:9085/"

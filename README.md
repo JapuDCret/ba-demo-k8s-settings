@@ -18,6 +18,21 @@ Stop
     kubectl delete -f order-deployment.yaml
     kubectl delete -f backend4frontend-deployment.yaml
 
+Quick&Dirty Log Check
+
+    kubectl logs localization-svc-001
+    kubectl logs localization-svc-002
+    kubectl logs localization-svc-003
+    kubectl logs localization-svc-004
+    kubectl logs address-validation-svc
+    kubectl logs cart-svc
+    kubectl logs order-svc
+    kubectl logs backend4frontend
+
+### K8S Deployment Diagram
+
+	![full-k8s-deployment.png](full-k8s-deployment.png)
+
 ## localization-svc
 
 Create
