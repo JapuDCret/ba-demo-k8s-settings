@@ -95,6 +95,8 @@ Delete
 
 ## Misc Commands
 
+Kubernetes
+
     kubectl get services
     
     kubectl get deployments
@@ -104,7 +106,13 @@ Delete
     kubectl describe deployments localization-svc
     
     kubectl describe services localization-svc
-    
+
+Docker
+
+	docker network inspect bridge
+	
+	docker ps
+
 # Minikube
 
 Start
