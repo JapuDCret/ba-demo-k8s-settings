@@ -16,6 +16,16 @@ spec:
       value: "http://cart-svc:9082/"
     - name: BA_ADDRESSVALIDATION_SERVICE_URL
       value: "http://address-validation-svc:9083/"
+    - name: JAEGER_SERVICE_NAME
+      value: "order-svc"
+    - name: JAEGER_AGENT_HOST
+      value: "jaeger-ui-agent"
+    - name: JAEGER_REPORTER_LOG_SPANS
+      value: "true"
+    - name: JAEGER_SAMPLER_TYPE
+      value: "const"
+    - name: JAEGER_SAMPLER_PARAM
+      value: "1"
 ---
 apiVersion: v1
 kind: Service

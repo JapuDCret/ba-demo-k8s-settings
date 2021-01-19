@@ -29,6 +29,22 @@ Quick&Dirty Log Check
     kubectl logs order-svc
     kubectl logs backend4frontend
 
+## Jaeger
+
+Start
+	
+	kubectl get ingress
+	
+	minikube service jaeger-ui-query
+
+Create
+
+	kubectl apply -f jaeger_instance.yaml
+
+Delete
+
+	kubectl delete -f jaeger_instance.yaml
+
 ### K8S Deployment Diagram
 
 ![full-k8s-deployment.png](full-k8s-deployment.png)
@@ -95,7 +111,7 @@ Delete
 
 ## Misc Commands
 
-Kubernetes
+### Kubernetes
 
     kubectl get services
     
@@ -109,15 +125,16 @@ Kubernetes
 
 Docker
 
-	docker network inspect bridge
-	
-	docker ps
+    docker network inspect bridge
+    
+    docker ps
 
-# Minikube
+### Minikube
 
 Start
 
     minikube start --cpus 4 --memory 16384
+	minikube start --addons=ingress
 
 Stop
 
@@ -130,3 +147,27 @@ Start Services
     minikube service cart-svc
     minikube service order-svc
     minikube service backend4frontend
+
+### Jaeger Initial Config
+
+Info
+
+	kubectl get pods  --namespace="observability" --output="wide"
+	
+	kubectl get services --namespace="observability"
+
+Create
+
+    kubectl create -f jaeger_jaegertracing.io_jaegers_crd.yaml
+    kubectl create -f jaeger_service_account.yaml
+    kubectl create -f jaeger_role.yaml
+    kubectl create -f jaeger_role_binding.yaml
+    kubectl create -f jaeger_operator.yaml
+
+Delete
+
+    kubectl delete -f jaeger_jaegertracing.io_jaegers_crd.yaml
+    kubectl delete -f jaeger_service_account.yaml
+    kubectl delete -f jaeger_role.yaml
+    kubectl delete -f jaeger_role_binding.yaml
+    kubectl delete -f jaeger_operator.yaml

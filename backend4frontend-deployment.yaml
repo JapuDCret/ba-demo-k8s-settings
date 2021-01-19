@@ -20,6 +20,16 @@ spec:
       value: "http://address-validation-svc:9083/"
     - name: BA_LOCALIZATION_SERVICE_URL
       value: "http://localization-svc:9085/"
+    - name: JAEGER_SERVICE_NAME
+      value: "backend4frontend"
+    - name: JAEGER_AGENT_HOST
+      value: "jaeger-ui-agent"
+    - name: JAEGER_REPORTER_LOG_SPANS
+      value: "true"
+    - name: JAEGER_SAMPLER_TYPE
+      value: "const"
+    - name: JAEGER_SAMPLER_PARAM
+      value: "1"
 ---
 apiVersion: v1
 kind: Service
