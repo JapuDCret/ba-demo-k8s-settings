@@ -32,18 +32,34 @@ Quick&Dirty Log Check
 ## Jaeger
 
 Start
-	
-	kubectl get ingress
-	
-	minikube service jaeger-ui-query
+    
+    kubectl get ingress
+    
+    minikube service jaeger-ui-query
 
 Create
 
-	kubectl apply -f jaeger_instance.yaml
+    kubectl apply -f jaeger_instance.yaml
 
 Delete
 
-	kubectl delete -f jaeger_instance.yaml
+    kubectl delete -f jaeger_instance.yaml
+
+## Elastic Cloud on Kubernetes
+
+Create
+
+    kubectl apply -f elastic_instance.yaml
+
+Delete
+
+    kubectl delete -f elastic_instance.yaml
+
+Misc
+
+    kubectl get elasticsearch
+    kubectl get pods --selector='elasticsearch.k8s.elastic.co/cluster-name=quickstart'
+    kubectl get service quickstart-es-http
 
 ### K8S Deployment Diagram
 
@@ -134,7 +150,7 @@ Docker
 Start
 
     minikube start --cpus 4 --memory 16384
-	minikube start --addons=ingress
+    minikube start --addons=ingress
 
 Stop
 
@@ -152,9 +168,9 @@ Start Services
 
 Info
 
-	kubectl get pods  --namespace="observability" --output="wide"
-	
-	kubectl get services --namespace="observability"
+    kubectl get pods  --namespace="observability" --output="wide"
+    
+    kubectl get services --namespace="observability"
 
 Create
 
@@ -163,11 +179,24 @@ Create
     kubectl create -f jaeger_role.yaml
     kubectl create -f jaeger_role_binding.yaml
     kubectl create -f jaeger_operator.yaml
+    
+    # Start Elastic Cloud first
+    PASSWORD=$(kubectl get secret quickstart-es-elastic-user -o go-template='{{.data.elastic | base64decode}}')
+    echo $PASSWORD
+    kubectl create secret generic jaeger-secret --from-literal=ES_PASSWORD=$PASSWORD --from-literal=ES_USERNAME=elastic
+    kubectl create -f jaeger_instance.yaml
 
 Delete
+    
+    kubectl delete -f jaeger_instance.yaml
+    kubectl delete secret generic jaeger-secret
 
     kubectl delete -f jaeger_jaegertracing.io_jaegers_crd.yaml
     kubectl delete -f jaeger_service_account.yaml
     kubectl delete -f jaeger_role.yaml
     kubectl delete -f jaeger_role_binding.yaml
     kubectl delete -f jaeger_operator.yaml
+
+Misc
+
+    kubectl rollout restart deployment/jaeger-operator

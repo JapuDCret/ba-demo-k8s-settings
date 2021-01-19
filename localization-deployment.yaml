@@ -17,7 +17,9 @@ spec:
     - name: JAEGER_SERVICE_NAME
       value: "localization-svc-001"
     - name: JAEGER_AGENT_HOST
-      value: "jaeger-ui-agent"
+      valueFrom:
+        fieldRef:
+          fieldPath: status.hostIP
     - name: JAEGER_REPORTER_LOG_SPANS
       value: "true"
     - name: JAEGER_SAMPLER_TYPE
@@ -44,7 +46,9 @@ spec:
     - name: JAEGER_SERVICE_NAME
       value: "localization-svc-002"
     - name: JAEGER_AGENT_HOST
-      value: "jaeger-ui-agent"
+      valueFrom:
+        fieldRef:
+          fieldPath: status.hostIP
     - name: JAEGER_REPORTER_LOG_SPANS
       value: "true"
     - name: JAEGER_SAMPLER_TYPE
@@ -71,7 +75,9 @@ spec:
     - name: JAEGER_SERVICE_NAME
       value: "localization-svc-003"
     - name: JAEGER_AGENT_HOST
-      value: "jaeger-ui-agent"
+      valueFrom:
+        fieldRef:
+          fieldPath: status.hostIP
     - name: JAEGER_REPORTER_LOG_SPANS
       value: "true"
     - name: JAEGER_SAMPLER_TYPE
@@ -98,7 +104,9 @@ spec:
     - name: JAEGER_SERVICE_NAME
       value: "localization-svc-004"
     - name: JAEGER_AGENT_HOST
-      value: "jaeger-ui-agent"
+      valueFrom:
+        fieldRef:
+          fieldPath: status.hostIP
     - name: JAEGER_REPORTER_LOG_SPANS
       value: "true"
     - name: JAEGER_SAMPLER_TYPE
