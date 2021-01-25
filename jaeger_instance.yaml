@@ -39,6 +39,10 @@ spec:
           memory: 4096Mi
         limits:
           memory: 4096Mi
+    esIndexCleaner:
+      enabled: false
+      numberOfDays: 7
+      schedule: "55 23 * * *"
   volumeMounts: # <5>
     - name: certificates
       mountPath: /es/certificates/

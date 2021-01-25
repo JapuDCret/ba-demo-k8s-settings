@@ -166,12 +166,6 @@ Start Services
 
 ### Jaeger Initial Config
 
-Info
-
-    kubectl get pods  --namespace="observability" --output="wide"
-    
-    kubectl get services --namespace="observability"
-
 Create
 
     kubectl create -f jaeger_jaegertracing.io_jaegers_crd.yaml
