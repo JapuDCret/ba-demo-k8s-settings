@@ -1,0 +1,20 @@
+apiVersion: enterprise.splunk.com/v1beta1
+kind: Standalone
+metadata:
+  name: s1
+  # The enterprise.splunk.com/delete-pvc finalizer is optional, and may be used to tell the Splunk Operator that you would like it to remove all the Persistent Volumes associated with the instance when you delete it.
+#  finalizers:
+#  - enterprise.splunk.com/delete-pvc
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: splunk-ui
+spec:
+  type: NodePort
+  selector:
+    app: splunk-s1-standalone-0
+  ports:
+  - port: 8000
+    targetPort: 8000
+    nodePort: 32080

@@ -32,6 +32,13 @@ spec:
       value: "const"
     - name: JAEGER_SAMPLER_PARAM
       value: "1"
+    - name: SPLUNK_HEC_URL
+      value: "https://splunk-s1-standalone-service:8088/"
+    - name: SPLUNK_HEC_TOKEN
+      valueFrom:
+        secretKeyRef:
+          name: splunk-default-secret
+          key: hec_token
 ---
 apiVersion: v1
 kind: Service

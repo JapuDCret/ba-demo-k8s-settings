@@ -61,69 +61,33 @@ Misc
     kubectl get pods --selector='elasticsearch.k8s.elastic.co/cluster-name=quickstart'
     kubectl get service quickstart-es-http
 
+## Splunk on Kubernetes
+
+Create
+
+    kubectl apply -f splunk-operator-install.yaml
+
+Delete
+
+    kubectl delete standalones --all
+    kubectl delete licensemasters --all
+    kubectl delete searchheadclusters --all
+    kubectl delete clustermasters --all
+    kubectl delete indexerclusters --all
+    kubectl delete spark --all
+    kubectl delete -f splunk-operator-install.yaml
+
 ### K8S Deployment Diagram
 
 ![full-k8s-deployment.png](full-k8s-deployment.png)
 
-## localization-svc
+## Microservices
 
-Create
-
-    kubectl apply -f localization-deployment.yaml
-    
-    minikube service localization-svc
-
-Delete
-
-    kubectl delete -f localization-deployment.yaml
-
-## address-validation-svc
-
-Create
-
-    kubectl apply -f address-validation-deployment.yaml
-    
-    minikube service address-validation-svc
-
-Delete
-
-    kubectl delete -f address-validation-deployment.yaml
-
-## cart-svc
-
-Create
-
-    kubectl apply -f cart-deployment.yaml
-    
-    minikube service cart-svc
-
-Delete
-
-    kubectl delete -f cart-deployment.yaml
-
-## order-svc
-
-Create
-
-    kubectl apply -f order-deployment.yaml
-    
-    minikube service order-svc
-
-Delete
-
-    kubectl delete -f order-deployment.yaml
-    
-## backend4frontend
-
-Create
-
-    kubectl apply -f backend4frontend-deployment.yaml
-    
-    minikube service backend4frontend
-
-Delete
-
-    kubectl delete -f backend4frontend-deployment.yaml
+	localization-svc
+	address-validation-svc
+	cart-svc
+	order-svc
+	backend4frontend
 
 ## Misc Commands
 
@@ -194,3 +158,9 @@ Delete
 Misc
 
     kubectl rollout restart deployment/jaeger-operator
+
+### Splunk Commands
+
+	kubectl get secret splunk-default-secret -o yaml
+	# get only admin password, decoded
+	kubectl get secret splunk-default-secret -o 'go-template={{index .data "password"}}' | base64 -d

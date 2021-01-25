@@ -21,14 +21,14 @@ spec:
     imagePullSecrets:
     - name: agent-imagePullSecret
   storage:
-    type: elasticsearch # <1>
+    type: elasticsearch
     options:
       es:
-        server-urls: http://quickstart-es-http:9200 # <2>
+        server-urls: http://quickstart-es-http:9200
         index-prefix: my-prefix
-        #tls: # <3>
+        #tls:
           #ca: /es/certificates/ca.crt
-    secretName: jaeger-secret # <4>
+    secretName: jaeger-secret
     # derive DAG, see https://www.jaegertracing.io/docs/1.21/operator/#deriving-dependencies
     dependencies:
       enabled: true
