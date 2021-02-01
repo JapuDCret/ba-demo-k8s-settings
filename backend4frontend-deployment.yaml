@@ -39,6 +39,10 @@ spec:
         secretKeyRef:
           name: splunk-default-secret
           key: hec_token
+    - name: OTEL_EXPORT_HOST
+      value: "jaeger-ui-collector"
+    - name: OTEL_EXPORT_PORT
+      value: "14250"
 ---
 apiVersion: v1
 kind: Service
