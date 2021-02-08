@@ -32,7 +32,7 @@ spec:
     # derive DAG, see https://www.jaegertracing.io/docs/1.21/operator/#deriving-dependencies
     dependencies:
       enabled: true
-      schedule: "0/5 * * * *"
+      schedule: "55 23 * * *"
       # sparkMaster:
       resources:
         requests:
@@ -41,7 +41,7 @@ spec:
           memory: 4096Mi
     esIndexCleaner:
       enabled: false
-      numberOfDays: 7
+      numberOfDays: 120
       schedule: "55 23 * * *"
   volumeMounts: # <5>
     - name: certificates

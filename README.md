@@ -63,6 +63,10 @@ Misc
 
 ## Splunk on Kubernetes
 
+Start
+
+	minikube service splunk-s1-standalone-service
+
 Create
 
     kubectl apply -f splunk-operator-install.yaml
