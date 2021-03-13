@@ -65,7 +65,7 @@ Misc
 
 Start
 
-	minikube service splunk-s1-standalone-service
+    minikube service splunk-s1-standalone-service
 
 Create
 
@@ -87,11 +87,11 @@ Delete
 
 ## Microservices
 
-	localization-svc
-	address-validation-svc
-	cart-svc
-	order-svc
-	backend4frontend
+    localization-svc
+    address-validation-svc
+    cart-svc
+    order-svc
+    backend4frontend
 
 ## Misc Commands
 
@@ -163,8 +163,12 @@ Misc
 
     kubectl rollout restart deployment/jaeger-operator
 
+Update DAG by running the spark-dependencies job
+
+    kubectl create job --from=CronJob/jaeger-ui-spark-dependencies jaeger-ui-spark-dependencies-<id>
+
 ### Splunk Commands
 
-	kubectl get secret splunk-default-secret -o yaml
-	# get only admin password, decoded
-	kubectl get secret splunk-default-secret -o 'go-template={{index .data "password"}}' | base64 -d
+    kubectl get secret splunk-default-secret -o yaml
+    # get only admin password, decoded
+    kubectl get secret splunk-default-secret -o 'go-template={{index .data "password"}}' | base64 -d
